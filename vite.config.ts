@@ -12,4 +12,5 @@ export default defineConfig({
 			pages: "/src/pages",
 		},
 	},
+	base: "/calleditprod",
 })
