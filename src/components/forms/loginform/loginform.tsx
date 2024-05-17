@@ -1,8 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-
 import { userLogin } from 'src/library/api/userfetch';
-import { useRouter } from 'next/navigation';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,16 +8,15 @@ const LoginForm: React.FC = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [loginError, setLoginError] = useState("");
-	// const router = useRouter()
 	const navigate = useNavigate()
-	const [cookie, setCookie] = useCookies(['userInfo']);
+	const [,setCookie] = useCookies(['userInfo']);
 
 	async function handleLoginSubmit() {
 		const userData = {
 			"username": username,
 			"password": password,
 		}
-		let a = await userLogin(userData)
+		const a = await userLogin(userData)
 		if (a.token) {
 			setCookie('userInfo', a, { path: '/', maxAge: 1800 })
 			navigate('/')

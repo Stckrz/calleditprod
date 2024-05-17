@@ -23,7 +23,7 @@ interface PredictionProps {
 }
 
 const Prediction: React.FC<PredictionProps> = ({ item, mode, reload, setReload }) => {
-	const [cookie, setCookie] = useCookies(['userInfo']);
+	const [cookie] = useCookies(['userInfo']);
 	const [commentView, setCommentView] = useState(false);
 
 	const updatePredictionResult = (result: boolean) => {

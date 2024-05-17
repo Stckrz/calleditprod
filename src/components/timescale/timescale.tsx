@@ -3,12 +3,12 @@ import ProgressBar from 'components/common/progressBar/progressBar';
 import Timer from 'components/common/timer/timer';
 
 interface TimeScaleProps {
-	title: string,
+	title?: string,
 	timeCreated: string,
 	timeFinished: string,
 	completed: boolean
 }
-const TimeScale: React.FC<TimeScaleProps> = ({ title, timeCreated, timeFinished, completed }) => {
+const TimeScale: React.FC<TimeScaleProps> = ({ timeCreated, timeFinished, completed }) => {
 	const [timeProgress, setTimeProgress] = useState(0);
 
 	const finishedDate = new Date(timeFinished);

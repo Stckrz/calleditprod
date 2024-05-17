@@ -1,4 +1,4 @@
-import { IApiPrediction, IPrediction } from "@/app/models/predictionmodels"
+import { IApiPrediction, IPrediction } from "src/models/predictionmodels"
 import { typeConversion } from "./fetchCommon"
 const host = "https://calleditapi.onrender.com"
 

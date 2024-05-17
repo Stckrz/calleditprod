@@ -16,8 +16,8 @@ export enum CommentFeedType {
 const CommentFeed: React.FC<commentFeedProps> = ({ parentId, commentFeedType }) => {
 	const [comments, setComments] = useState<any>();
 	const [showCommentForm, setShowCommentForm] = useState(false);
-	const [feedPage, setFeedPage] = useState(1);
-	const [commentCount, setCommentCount] = useState(0);
+	const [feedPage] = useState(1);
+	const [, setCommentCount] = useState(0);
 
 
 	async function getComments() {

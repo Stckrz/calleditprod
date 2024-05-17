@@ -11,7 +11,7 @@ const RegisterForm: React.FC = () => {
 	const [registerError, setRegisterError] = useState("");
 	const navigate = useNavigate()
 	// const router = useRouter();
-	const [cookie, setCookie] = useCookies(['userInfo'])
+	const [, setCookie] = useCookies(['userInfo'])
 
 
 	const passcheck = (pass1: string, pass2: string) => {
@@ -31,7 +31,7 @@ const RegisterForm: React.FC = () => {
 			"password": password,
 			"repeatpassword": repeatPassword,
 		}
-		let a = await registerUser(userData)
+		const a = await registerUser(userData)
 
 		if (a.username) {
 			setCookie('userInfo', a, { path: '/', maxAge: 1800 })

@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 import UserIcon from 'components/userIcon/userIcon';
 
 const UserNav: React.FC = () => {
-	const [cookie, setCookie, removeCookie] = useCookies(['userInfo'])
+	const [cookie, removeCookie] = useCookies(['userInfo'])
 
 	useEffect(() => { }, [cookie])
 	return (

@@ -5,7 +5,7 @@ import Layout from 'src/pages/layout/layout';
 
 const Dashboard: React.FC = () => {
 
-	const [cookie, setCookie] = useCookies(['userInfo'])
+	const [cookie] = useCookies(['userInfo'])
 	return (
 		<>
 			<Layout>

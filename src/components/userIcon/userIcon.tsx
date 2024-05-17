@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import { IPrediction } from 'src/models/predictionmodels';
+// import { IPrediction } from 'src/models/predictionmodels';
 import { FaRegUser } from "react-icons/fa";
 import { getPredictions } from "src/library/api/predictionfetch";
 
@@ -14,7 +14,7 @@ const UserIcon: React.FC<UserIconProps> = ({ username }) => {
 	async function setConfirmedPredictionFeed() {
 		let tempCount = 0
 		const arr = await getPredictions({ username: username })
-		for (let i of arr.predictions) {
+		for (const i of arr.predictions) {
 			if(i.completed && i.authorPredictionConfirmed === null){
 				tempCount += 1;
 			}

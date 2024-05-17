@@ -1,5 +1,5 @@
-import { IRegister, IUser } from "@/app/models/usermodels"
-import { ILogin } from "@/app/models/usermodels"
+import { IRegister, IUser } from "src/models/usermodels"
+import { ILogin } from "src/models/usermodels"
 const host = "https://calleditapi.onrender.com"
 
 //registers a new user

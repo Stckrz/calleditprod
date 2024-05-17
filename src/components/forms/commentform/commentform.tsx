@@ -13,7 +13,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ parentId, getComments, setSho
 	const [title, setTitle] = useState("");
 	const [postBody, setPostBody] = useState("");
 	const [commentError, setCommentError] = useState("");
-	const [cookie, setCookie] = useCookies(['userInfo']);
+	const [cookie] = useCookies(['userInfo']);
 
 	async function handleCommentSubmit() {
 		if (!cookie.userInfo) {

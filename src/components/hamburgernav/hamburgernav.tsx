@@ -1,8 +1,8 @@
 'use client'
 import { RxHamburgerMenu } from 'react-icons/rx';
-import Link from 'next/link';
 import { AiOutlineHome } from 'react-icons/ai';
 import UserNav from '../usernav/usernav';
+import { Link } from 'react-router-dom';
 
 const HamburgerNav: React.FC = () => {
 	return (
@@ -14,7 +14,7 @@ const HamburgerNav: React.FC = () => {
 					<div
 						className={"h-full w-112 bg-cyan-500 border border-black flex items-center justify-center rounded"}
 					>
-						<Link href="">
+						<Link to="/">
 							<div className={"flex items-center justify-center gap-1"}>
 								<AiOutlineHome size={"1.5em"} />
 								Home

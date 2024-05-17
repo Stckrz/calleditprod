@@ -5,7 +5,7 @@ import { categoryArray } from 'src/library/objects/categoryArray';
 
 import { useCookies } from 'react-cookie';
 
-import DatePicker from 'react-datepicker';
+import { DatePicker } from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
 import Dropdown from 'components/common/dropdown/dropdown';
@@ -16,7 +16,7 @@ const PredictionForm: React.FC = () => {
 	const [category, setCategory] = useState("");
 	const [description, setDescription] = useState("");
 	const [completionDate, setCompletionDate] = useState(new Date())
-	const [cookie, setCookie] = useCookies(['userInfo'])
+	const [cookie] = useCookies(['userInfo'])
 	const navigate = useNavigate();
 
 	// const router = useRouter();

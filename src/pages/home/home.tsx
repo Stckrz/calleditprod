@@ -4,7 +4,7 @@ import { FeedType } from "components/predictionFeed/predictionFeed";
 import PredictionFeed from "components/predictionFeed/predictionFeed";
 
 const Home = () => {
-	const [category, setCategory] = useState("All")
+	const [category] = useState("All")
 
 	return (
 		<>

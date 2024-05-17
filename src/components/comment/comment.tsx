@@ -11,10 +11,10 @@ interface CommentProps {
 
 const Comment: React.FC<CommentProps> = ({ commentObject }) => {
 	const [userVote, setUserVote] = useState("");
-	const [cookie, setCookie] = useCookies(['userInfo']);
-	const [comments, setComments] = useState([]);
-	const [commentCount, setCommentCount] = useState(0);
-	const [feedPage, setFeedPage] = useState(1);
+	const [cookie] = useCookies(['userInfo']);
+	const [, setComments] = useState([]);
+	const [, setCommentCount] = useState(0);
+	const [feedPage,] = useState(1);
 
 	async function checkUserVote() {
 		if (cookie.userInfo) {

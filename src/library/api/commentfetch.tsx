@@ -1,4 +1,4 @@
-import { IApiComment, IComment } from "@/app/models/commentmodels";
+import { IApiComment, IComment } from "src/models/commentmodels";
 const host = "https://calleditapi.onrender.com"
 
 interface commentParamObject {
@@ -11,12 +11,12 @@ export interface commentReturnObject {
 }
 
 export async function getCommentsByPredictionId(input: commentParamObject) {
-	let page;
-	if (input.page) {
-		page = input.page
-	} else {
-		page = 1
-	}
+	// let page;
+	// if (input.page) {
+	// 	page = input.page
+	// } else {
+	// 	page = 1
+	// }
 	try {
 		const response = await fetch(`${host}/comments/getByPredictionId/${input.id}`);
 		const data = await response.json()
@@ -25,7 +25,7 @@ export async function getCommentsByPredictionId(input: commentParamObject) {
 	catch (error) { console.log(error) }
 }
 
-export async function postNewComment(commentData: IComment, token: string, predictionId: string) {
+export async function postNewComment(commentData: IComment, token: string) {
 	try {
 		const response = await fetch(`${host}/comments/post`, {
 			method: "POST",
