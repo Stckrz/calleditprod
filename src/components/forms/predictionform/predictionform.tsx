@@ -5,7 +5,7 @@ import { categoryArray } from 'src/library/objects/categoryArray';
 
 import { useCookies } from 'react-cookie';
 
-import { DatePicker } from 'react-datepicker';
+import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
 import Dropdown from 'components/common/dropdown/dropdown';
