@@ -14,7 +14,7 @@ function App() {
 
 	return (
 		<>
-			<Router>
+			<Router basename={"/calleditprod/"}>
 				<Routes>
 					{/* <Route path="/" element={<Home />}> */}
 						<Route index element={<Home />} />
