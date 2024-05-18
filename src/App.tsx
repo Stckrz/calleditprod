@@ -15,7 +15,8 @@ function App() {
 
 	return (
 		<>
-			<Router basename={"/calleditprod/"}>
+			{/* <Router basename={"/calleditprod/"}> */}
+			<Router>
 				<Routes>
 					{/* <Route path="/" element={<Home />}> */}
 						<Route index element={<Home />} />
