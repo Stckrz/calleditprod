@@ -3,6 +3,7 @@ import { getCommentsByPredictionId } from "src/library/api/commentfetch"
 import { IApiComment } from 'src/models/commentmodels';
 import CommentForm from 'components/forms/commentform/commentform';
 import Comment from 'components/comment/comment';
+import Loading from '../common/loading/loading';
 
 interface commentFeedProps {
 	parentId: string,
@@ -18,18 +19,25 @@ const CommentFeed: React.FC<commentFeedProps> = ({ parentId, commentFeedType }) 
 	const [showCommentForm, setShowCommentForm] = useState(false);
 	const [feedPage] = useState(1);
 	const [, setCommentCount] = useState(0);
+	const [isLoading, setIsLoading] = useState(true);
 
 
 	async function getComments() {
 		const commentObject = await getCommentsByPredictionId({ page: feedPage, id: parentId })
 		setComments(commentObject?.comments)
 		setCommentCount(commentObject?.count)
+		setIsLoading(false)
 	}
 
 	useEffect(() => {
 		getComments()
 	}, [parentId]);
 
+	if (isLoading) {
+		return (
+			<Loading />
+		)
+	}
 	return (
 		<>
 			{/* <div className={"w-full flex flex-col gap-2 max-h-96 overflow-auto border p-1"}> */}

@@ -1,4 +1,4 @@
-import { SetStateAction } from "react"
+import { SetStateAction, useEffect, useState } from "react"
 
 interface PaginationProps {
 	setPage: React.Dispatch<SetStateAction<number>>,
@@ -7,12 +7,11 @@ interface PaginationProps {
 	entryLimit: number
 }
 const Pagination: React.FC<PaginationProps> = ({ setPage, page, entryCount, entryLimit }) => {
-	const pages = Math.floor(entryCount / entryLimit) + 1
-	const pageArray = []
+	const [pages, setPages] = useState(0)
 
-	for (let i = 0; i < pages; i++) {
-		pageArray.push(i + 1)
-	}
+	useEffect(() => {
+		setPages(Math.floor(entryCount / entryLimit) + 1)
+	}, [entryCount])
 
 	return (
 		<>
@@ -24,18 +23,38 @@ const Pagination: React.FC<PaginationProps> = ({ setPage, page, entryCount, entr
 					>
 						{"<"}
 					</div>
-					{
-						pageArray.map((page) => {
-							return (
-								<div
-									key={page}
-									className={"flex items-center justify-center h-1/2 m-0.5 rounded bg-cyan-500 px-2 cursor-pointer hover:bg-cyan-700"}
-									onClick={() => { setPage(page) }}>
-									{page}
-								</div>
-							)
-						})
+					{page > 1 &&
+						<div
+							className={"flex items-center justify-center h-1/2 m-0.5 rounded bg-cyan-500 px-2 cursor-pointer hover:bg-cyan-700"}
+							onClick={() => { setPage(page - 1) }}>
+							{page - 1}
+						</div>
 					}
+					<div
+						className={"flex items-center justify-center h-1/2 m-0.5 rounded bg-cyan-500 px-2 cursor-pointer hover:bg-cyan-700"}
+						onClick={() => { setPage(page) }}>
+						{page}
+					</div>
+					{page < pages &&
+						<div
+							className={"flex items-center justify-center h-1/2 m-0.5 rounded bg-cyan-500 px-2 cursor-pointer hover:bg-cyan-700"}
+							onClick={() => { setPage(page + 1) }}>
+							{page + 1}
+						</div>
+					}
+					{/* { */}
+					{/* 	 */}
+					{/* 	pageArray.map((page) => { */}
+					{/* 		return ( */}
+					{/* 			<div */}
+					{/* 				key={page} */}
+					{/* 				className={"flex items-center justify-center h-1/2 m-0.5 rounded bg-cyan-500 px-2 cursor-pointer hover:bg-cyan-700"} */}
+					{/* 				onClick={() => { setPage(page) }}> */}
+					{/* 				{page} */}
+					{/* 			</div> */}
+					{/* 		) */}
+					{/* 	}) */}
+					{/* } */}
 					<div
 						className={"flex items-center justify-center h-1/2 m-0.5 rounded bg-cyan-500 px-1 cursor-pointer hover:bg-cyan-700"}
 						onClick={() => { page < pages && setPage(page + 1) }}

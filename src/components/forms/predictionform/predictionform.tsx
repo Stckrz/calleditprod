@@ -10,12 +10,14 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import Dropdown from 'components/common/dropdown/dropdown';
 import { useNavigate } from 'react-router-dom';
+import Loading from 'src/components/common/loading/loading';
 
 const PredictionForm: React.FC = () => {
 	const [title, setTitle] = useState("");
 	const [category, setCategory] = useState("");
 	const [description, setDescription] = useState("");
 	const [completionDate, setCompletionDate] = useState(new Date())
+	const [isLoading, setIsLoading] = useState(false);
 	const [cookie] = useCookies(['userInfo'])
 	const navigate = useNavigate();
 
@@ -35,6 +37,7 @@ const PredictionForm: React.FC = () => {
 	}
 
 	async function handlePredictionSubmit() {
+		setIsLoading(true);
 		category === "" && setCategory("Other")
 		const predictionData = {
 			"title": title,
@@ -44,13 +47,15 @@ const PredictionForm: React.FC = () => {
 			"votes": [],
 			"finished_on": completionDate.toString(),
 		}
-		let a = await addPrediction(predictionData, cookie.userInfo?.token)
+		const a = await addPrediction(predictionData, cookie.userInfo?.token)
 		if (a._id) {
 			navigate('/')
 			setTitle("");
 			setDescription("")
+			setIsLoading(false);
 		} else {
 			setSubmitError("something went wrong, please try again")
+			setIsLoading(false);
 		}
 	}
 
@@ -71,7 +76,12 @@ const PredictionForm: React.FC = () => {
 					<label className={"w-full flex flex-col font-bold text-gray-600 align-start"}>Completion Date
 						<DatePicker className={"input-primary h-9"} selected={completionDate} onChange={(date: Date) => setCompletionDate(date)} />
 					</label>
+					<div className={"flex w-full justify-end gap-2"}>
+						{isLoading &&
+							<div className={"self-center"}><Loading /></div>
+						}
 					<button className={"btn-primary self-end"} onClick={() => { formCheckHandler() }}>submit</button>
+					</div>
 					<div className={"self-start text-red-600"}>{submitError}</div>
 				</div>
 			</div>

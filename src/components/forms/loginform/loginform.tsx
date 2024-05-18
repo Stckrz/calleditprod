@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { userLogin } from 'src/library/api/userfetch';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import Loading from 'src/components/common/loading/loading';
 
 const LoginForm: React.FC = () => {
 	const [username, setUsername] = useState("");
@@ -10,18 +11,23 @@ const LoginForm: React.FC = () => {
 	const [loginError, setLoginError] = useState("");
 	const navigate = useNavigate()
 	const [, setCookie] = useCookies(['userInfo']);
+	const [isLoading, setIsLoading] = useState(false)
 
 	async function handleLoginSubmit() {
+		setIsLoading(true)
 		const userData = {
 			"username": username,
 			"password": password,
 		}
 		const a = await userLogin(userData)
 		if (a.token) {
+			console.log(a)
 			setCookie('userInfo', a, { path: '/', maxAge: 1800 })
 			navigate('/')
+			setIsLoading(false)
 		} else {
 			setLoginError("incorrect login credentials")
+			setIsLoading(false)
 		}
 	}
 
@@ -35,7 +41,12 @@ const LoginForm: React.FC = () => {
 					<label className={"flex flex-col font-bold text-gray-600 w-full"}>Password
 						<input type={"password"} className={"input-primary"} onChange={e => { setPassword(e.target.value) }} />
 					</label>
-					<button className={"btn-primary self-end"} onClick={() => { handleLoginSubmit() }}>Login</button>
+					<div className={"flex w-full justify-end gap-2"}>
+						{isLoading &&
+						<div className={"self-center"}><Loading /></div>
+						}
+						<button className={"btn-primary self-end"} onClick={() => { handleLoginSubmit() }}>Login</button>
+					</div>
 					<div className={"self-start text-red-600"}>{loginError}</div>
 				</div>
 			</div>

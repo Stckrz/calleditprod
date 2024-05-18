@@ -6,6 +6,7 @@ import Prediction, { Mode } from 'components/predictionView/predictionView';
 import CategoryPicker from 'components/categoryPicker/categoryPicker';
 import Dropdown from 'components/common/dropdown/dropdown';
 import Pagination from 'components/common/pagination/pagination';
+import Loading from '../common/loading/loading';
 
 export enum FeedType {
 	Normal,
@@ -24,14 +25,15 @@ const PredictionFeed: React.FC<PredictionFeedProps> = ({ username = "", feedType
 	const [predictionArray, setPredictionArray] = useState<IPrediction[]>([]);
 	const [feedPage, setFeedPage] = useState(1);
 	const [predictionCount, setPredictionCount] = useState(0);
-	const [reload, setReload] = useState(false)
+	const [reload, setReload] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 
 	async function setConfirmedPredictionFeed() {
 		const tempPredictionArray = []
 		let predictionObject: predictionReturnObject = { predictions: [], count: 0 }
 		predictionObject = await getPredictions({ username: username })
 
-		for (let i of predictionObject.predictions) {
+		for (const i of predictionObject.predictions) {
 			i.completed && i.authorPredictionConfirmed === null &&
 				tempPredictionArray.push(i)
 		}
@@ -71,6 +73,7 @@ const PredictionFeed: React.FC<PredictionFeedProps> = ({ username = "", feedType
 				setPredictionCount(predictionObject.count)
 			}
 		}
+		setIsLoading(false)
 	}
 
 	const categoryMarkup = (feedType: FeedType) => {
@@ -101,6 +104,12 @@ const PredictionFeed: React.FC<PredictionFeedProps> = ({ username = "", feedType
 	useEffect(() => {
 		predictionFetch()
 	}, [category, feedPage, reload])
+
+	if (isLoading) {
+		return (
+			<Loading />
+		)
+	}
 
 	return (
 		<>

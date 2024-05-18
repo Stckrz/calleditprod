@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { registerUser } from 'src/library/api/userfetch';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import Loading from 'src/components/common/loading/loading';
 
 const RegisterForm: React.FC = () => {
 	const [username, setUsername] = useState("");
@@ -9,8 +10,8 @@ const RegisterForm: React.FC = () => {
 	const [password, setPassword] = useState("");
 	const [repeatPassword, setRepeatPassword] = useState("");
 	const [registerError, setRegisterError] = useState("");
+	const [isLoading, setIsLoading] = useState(false)
 	const navigate = useNavigate()
-	// const router = useRouter();
 	const [, setCookie] = useCookies(['userInfo'])
 
 
@@ -25,6 +26,7 @@ const RegisterForm: React.FC = () => {
 	}
 
 	async function handleRegisterSubmit() {
+		setIsLoading(true);
 		const userData = {
 			"username": username,
 			"email": email,
@@ -36,8 +38,10 @@ const RegisterForm: React.FC = () => {
 		if (a.username) {
 			setCookie('userInfo', a, { path: '/', maxAge: 1800 })
 			navigate('/');
+			setIsLoading(false)
 		} else {
 			setRegisterError("username already exists")
+			setIsLoading(false)
 		}
 	}
 
@@ -57,6 +61,12 @@ const RegisterForm: React.FC = () => {
 					<label className={"flex flex-col font-bold text-gray-600 w-full"}>Repeat Password
 						<input type={"password"} className={"input-primary"} onChange={e => { setRepeatPassword(e.target.value) }} />
 					</label>
+					<div className={"flex w-full justify-end gap-2"}>
+						{isLoading &&
+							<div className={"self-center"}><Loading /></div>
+						}
+						<button className={"btn-primary"} onClick={() => { passcheck(password, repeatPassword) }}>Register</button>
+					</div>
 					<button className={"btn-primary"} onClick={() => { passcheck(password, repeatPassword) }}>Register</button>
 					<div className={"self-start text-red-600"}>{registerError}</div>
 				</div>
