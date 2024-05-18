@@ -1,7 +1,8 @@
 import './App.css'
 
 import { Routes, Route } from 'react-router-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
+// import { BrowserRouter as Router } from 'react-router-dom';
 import Home from 'src/pages/home/home';
 import Login from 'pages/users/login/login';
 import Register from 'pages/users/register/register'
