@@ -22,15 +22,15 @@ const Navbar: React.FC = () => {
 						<UserNav />
 					</div>
 					{mobileNavShown &&
-						<div className={"h-screen w-full absolute top-20 bg-background-gray"}>
+						<div className={"h-screen w-full absolute top-20 bg-background-gray flex flex-col p-1"}>
 							<Link to="/">
-								<div onClick={() => { setMobileNavShown(false) }} className={"h-1/6 m-1 bg-cyan-500 border border-black flex items-center justify-center rounded"}>
+								<div onClick={() => { setMobileNavShown(false) }} className={"p-4 m-1 bg-cyan-500 border border-black flex items-center justify-center rounded"}>
 									<AiOutlineHome size={"1.5em"} />
 									Home
 								</div>
 							</Link>
 							<Link to="newPrediction">
-								<div onClick={() => { setMobileNavShown(false) }} className={"h-1/6 m-1 bg-cyan-500 border border-black flex items-center justify-center rounded"}>
+								<div onClick={() => { setMobileNavShown(false) }} className={"p-4 m-1 bg-cyan-500 border border-black flex items-center justify-center rounded"}>
 									New
 								</div>
 							</Link>

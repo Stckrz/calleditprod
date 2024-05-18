@@ -5,21 +5,32 @@ import PredictionFeed, { FeedType } from 'components/predictionFeed/predictionFe
 import UserStats from 'components/userstats/userstats';
 import { useParams } from 'react-router-dom';
 import Layout from 'src/pages/layout/layout';
+import Loading from 'src/components/common/loading/loading';
 
 const UserProfile: React.FC = () => {
 	const username = useParams();
 	const [user, setUser] = useState<IUser>(iUserInitial)
+	const [isLoading, setIsLoading] = useState(true)
 
 	async function getUserData() {
+
 		if (username.username !== undefined) {
 			setUser(await getUserByUsername(username.username))
 		}
+		setIsLoading(false);
 	}
 	// votes userposts
 	useEffect(() => {
 		getUserData()
 	}, [username])
 
+	if (isLoading) {
+		return (
+			<div className={"h-full w-full flex items-center justify-center"}>
+				<Loading />
+			</div>
+		)
+	}
 	return (
 		<>
 			<Layout>
