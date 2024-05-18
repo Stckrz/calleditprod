@@ -43,7 +43,7 @@ const RegisterForm: React.FC = () => {
 
 	return (
 		<>
-			<div className={"flex flex-col items-center justify-center gap-1 aspect-video h-full"}>
+			<div className={"flex flex-col items-center justify-center gap-1 w-full flex-grow"}>
 				<div className={"sm:w-2/4 md:w-1/2 lg:w-1/3 flex flex-col items-start justify-center gap-1 p-6 border border-gray-200 rounded-xl shadow-lg shadow-gray-400 bg-gray-100"}>
 					<label className={"flex flex-col font-bold text-gray-600 w-full"}>Username
 						<input className={"input-primary"} onChange={e => { setUsername(e.target.value) }} />

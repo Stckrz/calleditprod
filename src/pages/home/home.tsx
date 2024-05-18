@@ -9,12 +9,10 @@ const Home = () => {
 	return (
 		<>
 			<Layout>
-				<div>
 					<div className={"flex flex-col w-full items-center "}>
 						<div>{"thats so much better isn't it?"}</div>
 						<PredictionFeed modifier={category} feedType={FeedType.Normal} />
 					</div>
-				</div>
 			</Layout>
 		</>
 	)
