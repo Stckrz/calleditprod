@@ -6,9 +6,7 @@ interface LayoutProps {
 }
 const Layout: React.FC<LayoutProps> = ({ children }) => {
 	return (
-		// <body className={"flex flex-col"}>
-		// <div className={"flex flex-col h-screen w-screen"}> 
-		<div className={"flex flex-col"}>
+		<div className={"flex flex-col h-full"}>
 			<div>
 				<Navbar />
 			</div>
