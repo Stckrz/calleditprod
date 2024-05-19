@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 // import Link from 'next/link';
 import { Link } from 'react-router-dom';
-import UserNav, { MenuType } from 'components/usernav/usernav';
+import UserNav from 'components/usernav/usernav';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { useViewport } from 'hooks/useViewport'
 import { AiOutlineHome } from 'react-icons/ai';
