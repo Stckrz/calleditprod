@@ -6,6 +6,7 @@ import UserNav from 'components/usernav/usernav';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { useViewport } from 'hooks/useViewport'
 import { AiOutlineHome } from 'react-icons/ai';
+import logo from 'src/assets/Calledit!.svg';
 
 const Navbar: React.FC = () => {
 	const [mobileNavShown, setMobileNavShown] = useState(false)
@@ -18,6 +19,9 @@ const Navbar: React.FC = () => {
 					<div className={"m-5"} onClick={() => { setMobileNavShown(!mobileNavShown) }}>
 						<RxHamburgerMenu size={"3em"} />
 					</div>
+					{/* <div className={"self-center justify-self-center"}> */}
+					{/* 	<img src={logo} height={"50%"} width="50%" /> */}
+					{/* </div> */}
 					<div className={"h-1/6 bg-cyan-500 flex items-center justify-center"}>
 						<UserNav />
 					</div>
@@ -39,14 +43,17 @@ const Navbar: React.FC = () => {
 					}
 				</div>
 				: <div className={"h-1/12 flex items-center justify-between border border-b-gray-500 bg-cyan-500 p-2"}>
-					<div
-						className={"h-full w-112 bg-cyan-500 flex items-center justify-center rounded"}>
-						<Link to="/">
-							<div className={"flex flex-col items-center justify-center font-bold"}>
-								<AiOutlineHome size={"1.5em"} />
-								Home
-							</div>
-						</Link>
+					<div>
+						<div
+							className={"h-full w-112 bg-cyan-500 flex items-center justify-center rounded"}>
+							<Link to="/">
+								<div className={"flex flex-col items-center justify-center font-bold"}>
+									<div>
+										<img src={logo} height={"50%"} width="50%" />
+									</div>
+								</div>
+							</Link>
+						</div>
 					</div>
 					<div className={"w-auto h-full bg-cyan-500 flex items-center justify-center rounded"}>
 						<Link to="/newPrediction">
