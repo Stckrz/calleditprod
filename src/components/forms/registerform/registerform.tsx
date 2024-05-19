@@ -67,7 +67,6 @@ const RegisterForm: React.FC = () => {
 						}
 						<button className={"btn-primary"} onClick={() => { passcheck(password, repeatPassword) }}>Register</button>
 					</div>
-					<button className={"btn-primary"} onClick={() => { passcheck(password, repeatPassword) }}>Register</button>
 					<div className={"self-start text-red-600"}>{registerError}</div>
 				</div>
 			</div>

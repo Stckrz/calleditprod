@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 // import Link from 'next/link';
 import { Link } from 'react-router-dom';
-import UserNav from 'components/usernav/usernav';
+import UserNav, { MenuType } from 'components/usernav/usernav';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { useViewport } from 'hooks/useViewport'
 import { AiOutlineHome } from 'react-icons/ai';
@@ -17,27 +17,34 @@ const Navbar: React.FC = () => {
 			{width.width <= 800
 				? <div className={"h-1/12 flex items-center justify-between border border-b-gray-500 bg-cyan-500 relative z-50"}>
 					<div className={"m-5"} onClick={() => { setMobileNavShown(!mobileNavShown) }}>
-						<RxHamburgerMenu size={"3em"} />
+						<RxHamburgerMenu size={"2em"} />
 					</div>
-					{/* <div className={"self-center justify-self-center"}> */}
-					{/* 	<img src={logo} height={"50%"} width="50%" /> */}
-					{/* </div> */}
+					<div className={"self-center justify-self-center"}>
+						<img src={logo} height={"50%"} width="50%" />
+					</div>
 					<div className={"h-1/6 bg-cyan-500 flex items-center justify-center"}>
 						<UserNav />
 					</div>
 					{mobileNavShown &&
 						<div className={"h-screen w-full absolute top-20 bg-background-gray flex flex-col p-1"}>
 							<Link to="/">
-								<div onClick={() => { setMobileNavShown(false) }} className={"p-4 m-1 bg-cyan-500 border border-black flex items-center justify-center rounded"}>
+								<div
+									onClick={() => { setMobileNavShown(false) }}
+									className={"p-4 m-1 bg-cyan-500 border border-black flex items-center justify-center rounded"}
+								>
 									<AiOutlineHome size={"1.5em"} />
 									Home
 								</div>
 							</Link>
 							<Link to="newPrediction">
-								<div onClick={() => { setMobileNavShown(false) }} className={"p-4 m-1 bg-cyan-500 border border-black flex items-center justify-center rounded"}>
+								<div
+									onClick={() => { setMobileNavShown(false) }}
+									className={"p-4 m-1 bg-cyan-500 border border-black flex items-center justify-center rounded"}
+								>
 									New
 								</div>
 							</Link>
+							{/* <UserNav /> */}
 						</div>
 
 					}

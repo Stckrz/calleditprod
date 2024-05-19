@@ -1,4 +1,3 @@
-'use client'
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useCookies } from "react-cookie";
@@ -8,13 +7,17 @@ const UserNav: React.FC = () => {
 	const [cookie, removeCookie] = useCookies(['userInfo'])
 
 	useEffect(() => { }, [cookie])
+
+		// className={"p-4 m-1 bg-cyan-500 border border-black flex items-center justify-center rounded"}
+	
 	return (
 		<>
 			{
 				!cookie.userInfo?.username
-					? <div className={"w-44 flex mr-2 items-center justify-between"}>
+					? <div className={"w-44 flex mr-2 items-center justify-between flex-row"}>
 						<Link to="/login">
 							<button className={"w-20 btn-primary bg-transparent border border-white p-2"}>
+							{/* <button className={"p-4 w-full m-1 bg-cyan-500 border border-black flex items-center justify-center rounded md:m-0 md:w-20 md:btn-primary md:bg-transparent md:border-white md:p-2"}> */}
 								Login
 							</button>
 						</Link>
