@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { getPredictions, predictionReturnObject, getPredictionsByUsername, getPredictionsVotedByUsername } from 'src/library/api/predictionfetch';
+import {
+	getPredictions,
+	predictionReturnObject,
+	getPredictionsByUsername,
+	getPredictionsVotedByUsername
+} from 'src/library/api/predictionfetch';
 import { IPrediction } from 'src/models/predictionmodels';
 import { categoryArray } from 'src/library/objects/categoryArray';
 import Prediction, { Mode } from 'components/predictionView/predictionView';
 import CategoryPicker from 'components/categoryPicker/categoryPicker';
 import Dropdown from 'components/common/dropdown/dropdown';
 import Pagination from 'components/common/pagination/pagination';
-import Loading from '../common/loading/loading';
+import Loading from 'components/common/loading/loading';
 
 export enum FeedType {
 	Normal,

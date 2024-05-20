@@ -2,6 +2,32 @@ import { IRegister, IUser } from "src/models/usermodels"
 import { ILogin } from "src/models/usermodels"
 const host = "https://calleditapi.onrender.com"
 
+//gets all users
+export async function getAllUsers() {
+	try {
+		const response = await fetch(`${host}/users/getAll`)
+		const data = await response.json()
+		return (data)
+	}
+	catch (error) { console.log(error) }
+}
+
+export async function deleteUserById(id: string, token: string) {
+	try {
+		const response = await fetch(`${host}/users/deleteOne/${id}`, {
+			method: "DELETE",
+			headers: {
+				'Content-Type': 'application/json',
+				'authorization': `bearer ${token}`
+			},
+		})
+		const data = await response.json()
+		return data
+	}
+	catch (error) { console.log(error) }
+}
+
+
 //registers a new user
 export async function registerUser(sendData: IRegister) {
 	try {

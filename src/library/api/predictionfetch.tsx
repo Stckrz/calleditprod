@@ -13,6 +13,15 @@ export interface predictionReturnObject {
 	count: number
 }
 
+export async function getPredictionById(id: string) {
+	try {
+		const response = await fetch(`${host}/predictions/getOne/${id}`)
+		const data = response.json()
+		return (data)
+	}
+	catch (error) { console.log(error) }
+}
+
 //get all predictions
 export async function getPredictions(input: predictionParamObject) {
 	let page;
@@ -57,13 +66,13 @@ export async function getPredictionsByUsername(input: predictionParamObject) {
 		page = 1
 	}
 
-try {
-	const response = await fetch(`${host}/predictions/getByUser/${input.username}?page=${page}`)
-	const data = await response.json()
+	try {
+		const response = await fetch(`${host}/predictions/getByUser/${input.username}?page=${page}`)
+		const data = await response.json()
 		console.log(data)
-	return { predictions: data.data, count: data.total }
-}
-catch (error) { console.log(error) }
+		return { predictions: data.data, count: data.total }
+	}
+	catch (error) { console.log(error) }
 }
 
 //gets all predictions a user has voted on
@@ -148,3 +157,20 @@ export async function addPrediction(predictionData: IApiPrediction, token: strin
 	}
 	catch (error) { console.log(error) }
 }
+
+export async function deletePredictionById(id: string, token: string) {
+	try {
+		const response = await fetch(`${host}/predictions/deleteOne/${id}`, {
+			method: "DELETE",
+			headers: {
+				'Content-Type': 'application/json',
+				'authorization': `bearer ${token}`
+			},
+		})
+		const data = await response.json()
+		return data
+	}
+	catch (error) { console.log(error) }
+}
+
+

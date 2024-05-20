@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
 							</div>
 						</Link>
 					</div>
-					{cookie.userInfo.username &&
+					{cookie.userInfo.username !== undefined &&
 						<Link to="/dashboard">
 							<div className={"flex self-center"}>
 								<UserIcon username={cookie.userInfo.username} />
@@ -59,10 +59,10 @@ const Navbar: React.FC = () => {
 
 					}
 				</div>
-				: <div className={"h-1/12 flex items-center justify-between border border-b-gray-500 bg-cyan-500 p-2"}>
-					<div>
+				: <div className={"h-1/12 w-full flex items-center justify-start border border-b-gray-500 bg-cyan-500 p-2"}>
+					<div className={"w-1/3"}>
 						<div
-							className={"h-full w-112 bg-cyan-500 flex items-center justify-center rounded"}>
+							className={"h-full w-112 bg-cyan-500 flex items-center justify-start rounded"}>
 							<Link to="/">
 								<div className={"flex flex-col items-center justify-center font-bold"}>
 									<div>
@@ -72,14 +72,21 @@ const Navbar: React.FC = () => {
 							</Link>
 						</div>
 					</div>
-					<div className={"w-auto bg-cyan-500 flex items-center justify-center rounded absolute left-1/2"}>
+					<div className={"w-1/3 bg-cyan-500 flex items-center justify-center rounded left-1/2"}>
 						<Link to="/newPrediction">
 							<div className={"flex items-center justify-center bg-cyan-800 rounded w-20 btn-primary"}>
 								New
 							</div>
 						</Link>
+						{cookie.userInfo?.roles?.includes("admin") &&
+						<Link to="/admin">
+							<div className={"flex items-center justify-center bg-cyan-300 rounded w-20 btn-primary"}>
+								Admin
+							</div>
+						</Link>
+						}
 					</div>
-					<div className={"h-full w-112 bg-cyan-500 flex items-center justify-center rounded"}>
+					<div className={"h-full w-1/3 bg-cyan-500 flex items-center justify-end rounded"}>
 						<UserNav screenType={ScreenType.Desktop} />
 					</div>
 				</div>

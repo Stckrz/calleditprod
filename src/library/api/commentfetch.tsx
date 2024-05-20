@@ -10,6 +10,39 @@ export interface commentReturnObject {
 	count: number
 }
 
+export async function getAllComments() {
+	try {
+		const response = await fetch(`${host}/comments/getAll`);
+		const data = await response.json();
+		return (data);
+	}
+	catch (error) { console.log(error) }
+}
+
+export async function deleteCommentById(id: string, token: string) {
+	try {
+		const response = await fetch(`${host}/comments/deleteOne/${id}`, {
+			method: "DELETE",
+			headers: {
+				'Content-Type': 'application/json',
+				'authorization': `bearer ${token}`
+			},
+		})
+		const data = await response.json()
+		return data
+	}
+	catch (error) { console.log(error) }
+}
+
+export async function getCommentById(id: string) {
+	try {
+		const response = await fetch(`${host}/comments/getOne/${id}`)
+		const data = await response.json()
+		return (data)
+	}
+	catch (error) { console.log(error) }
+}
+
 export async function getCommentsByPredictionId(input: commentParamObject) {
 	// let page;
 	// if (input.page) {
@@ -77,19 +110,3 @@ export async function commentReply(commentId: string, token: string, parentComme
 		console.log(error)
 	}
 }
-// export async function getPredictionsByUsername(input: predictionParamObject) {
-// 	let page;
-// 	if (input.page) {
-// 		page = input.page
-// 	} else {
-// 		page = 1
-// 	}
-//
-// try {
-// 	const response = await fetch(`${host}/predictions/getByUser/${input.username}?page=${page}`)
-// 	const data = await response.json()
-// 		console.log(data)
-// 	return { predictions: data.data, count: data.total }
-// }
-// catch (error) { console.log(error) }
-// }
