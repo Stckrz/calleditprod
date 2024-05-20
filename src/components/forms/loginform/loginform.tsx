@@ -21,7 +21,6 @@ const LoginForm: React.FC = () => {
 		}
 		const a = await userLogin(userData)
 		if (a.token) {
-			console.log(a)
 			setCookie('userInfo', a, { path: '/', maxAge: 1800 })
 			navigate('/')
 			setIsLoading(false)
