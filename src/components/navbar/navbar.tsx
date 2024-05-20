@@ -1,29 +1,40 @@
-'use client'
 import React, { useState } from 'react';
-// import Link from 'next/link';
 import { Link } from 'react-router-dom';
 import UserNav, { ScreenType } from 'components/usernav/usernav';
-import { RxHamburgerMenu } from 'react-icons/rx';
 import { useViewport } from 'hooks/useViewport'
+import { RxHamburgerMenu } from 'react-icons/rx';
 import { AiOutlineHome } from 'react-icons/ai';
 import logo from 'src/assets/Calledit!.svg';
+import { useCookies } from 'react-cookie';
+import UserIcon from '../userIcon/userIcon';
+
 
 const Navbar: React.FC = () => {
 	const [mobileNavShown, setMobileNavShown] = useState(false)
 	const width = useViewport();
+	const [cookie] = useCookies(["userInfo"])
 
 	return (
 		<>
 			{width.width <= 800
-				? <div className={"h-1/12 w-full flex items-center justify-start border border-b-gray-500 bg-cyan-500 fixed z-50"}>
-					<div className={"m-5"} onClick={() => { setMobileNavShown(!mobileNavShown) }}>
-						<RxHamburgerMenu size={"2em"} />
-					</div>
-					<Link to="/">
-						<div>
-							<img src={logo} height={"50%"} width="50%" />
+				? <div className={"h-1/12 w-full flex border border-b-gray-500 bg-cyan-500 fixed z-50"}>
+					<div className={"flex items-center justify-start w-full"}>
+						<div className={"m-5"} onClick={() => { setMobileNavShown(!mobileNavShown) }}>
+							<RxHamburgerMenu size={"2em"} />
 						</div>
-					</Link>
+						<Link to="/">
+							<div>
+								<img src={logo} height={"50%"} width="50%" />
+							</div>
+						</Link>
+					</div>
+					{cookie.userInfo.username &&
+						<Link to="/dashboard">
+							<div className={"flex self-center"}>
+								<UserIcon username={cookie.userInfo.username} />
+							</div>
+						</Link>
+					}
 					{mobileNavShown &&
 						<div className={"h-screen w-full fixed top-16 bg-background-gray flex flex-col p-1"}>
 							<Link to="/">

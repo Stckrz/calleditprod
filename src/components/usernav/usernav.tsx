@@ -17,8 +17,6 @@ const UserNav: React.FC<UserNavProps> = ({ screenType }) => {
 
 	useEffect(() => { }, [cookie])
 
-	// className={"p-4 m-1 bg-cyan-500 border border-black flex items-center justify-center rounded"}
-
 	return (
 		<>
 			{
