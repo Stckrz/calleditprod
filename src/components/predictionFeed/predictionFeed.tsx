@@ -113,7 +113,7 @@ const PredictionFeed: React.FC<PredictionFeedProps> = ({ username = "", feedType
 
 	return (
 		<>
-			<div className={"flex flex-col gap-2 w-full md:w-1/2 self-center"}>
+			<div className={"flex flex-col gap-2 w-5/6 md:w-1/2 self-center"}>
 				{categoryMarkup(feedType)}
 				{predictionArray?.length > 0
 					? <div className={"flex flex-col items-center md:items-end gap-2"}>
