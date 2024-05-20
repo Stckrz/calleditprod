@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
 							</div>
 						</Link>
 					</div>
-					{cookie.userInfo.username !== undefined &&
+					{cookie.userInfo?.username !== undefined &&
 						<Link to="/dashboard">
 							<div className={"flex self-center"}>
 								<UserIcon username={cookie.userInfo.username} />
@@ -79,11 +79,11 @@ const Navbar: React.FC = () => {
 							</div>
 						</Link>
 						{cookie.userInfo?.roles?.includes("admin") &&
-						<Link to="/admin">
-							<div className={"flex items-center justify-center bg-cyan-300 rounded w-20 btn-primary"}>
-								Admin
-							</div>
-						</Link>
+							<Link to="/admin">
+								<div className={"flex items-center justify-center bg-cyan-300 rounded w-20 btn-primary"}>
+									Admin
+								</div>
+							</Link>
 						}
 					</div>
 					<div className={"h-full w-1/3 bg-cyan-500 flex items-center justify-end rounded"}>

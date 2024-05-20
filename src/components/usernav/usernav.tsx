@@ -37,10 +37,10 @@ const UserNav: React.FC<UserNavProps> = ({ screenType }) => {
 						</div>
 						<div className={"w-full"}>
 							<Link to="/register">
-								<div 
+								<div
 									className={screenType === ScreenType.Desktop
-									? "w-20 rounded btn-primary bg-white text-cyan-500 p-2 m-0"
-									: "hamburger-button w-full"}
+										? "w-20 rounded btn-primary bg-white text-cyan-500 p-2 m-0"
+										: "hamburger-button w-full"}
 								>
 									Sign Up
 								</div>
@@ -49,13 +49,13 @@ const UserNav: React.FC<UserNavProps> = ({ screenType }) => {
 					</div>
 					: <div className={"flex gap-3 flex-col md:flex-row"}>
 						{screenType === ScreenType.Desktop &&
-						<div className={"flex font-semibold items-center justify-center"}>
-							<Link to="/dashboard">
-								<div className={"flex items-center justify-center font-semibold"}>
-									<UserIcon username={cookie.userInfo.username} />
-								</div>
-							</Link>
-						</div>
+							<div className={"flex font-semibold items-center justify-center"}>
+								<Link to="/dashboard">
+									<div className={"flex items-center justify-center font-semibold"}>
+										<UserIcon username={cookie.userInfo.username} />
+									</div>
+								</Link>
+							</div>
 						}
 						<div>
 							<Link to="/logout">
